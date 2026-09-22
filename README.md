@@ -1,32 +1,90 @@
-# React + TypeScript + Vite
+# React-Router-LoginNavigationApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+`useNavigate`を使って、ログイン後にDashboardページへプログラムで遷移するReact Routerアプリです。
 
-Currently, two official plugins are available:
+## 目次
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* [概要](#概要)
+* [学習目標](#学習目標)
+* [ページ構成](#ページ構成)
+* [プロジェクト構成](#プロジェクト構成)
+* [画面遷移](#画面遷移)
+* [重要なポイント](#重要なポイント)
+* [インストール](#インストール)
+* [起動](#起動)
+* [使用技術](#使用技術)
 
-## React Compiler
+## 概要
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ログイン画面に「ログイン」ボタンを配置し、クリックすると`/dashboard`へ移動します。
 
-## Expanding the Oxlint configuration
+`useNavigate`を使ったプログラムによるページ遷移を学習します。
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 学習目標
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+* `useNavigate`の使い方
+* ボタンクリックによるプログラムナビゲーション
+* `navigate()`によるページ遷移
+* `BrowserRouter` / `Routes` / `Route`の基本的な使い方
+* ログイン後の画面遷移
+
+## ページ構成
+
+| ページ       | URL          | 説明           |
+| --------- | ------------ | ------------ |
+| Login     | `/`          | ログインボタンを表示   |
+| Dashboard | `/dashboard` | ログイン後のページを表示 |
+
+## プロジェクト構成
+
+```text
+src/
+├── pages/
+│   ├── Login.tsx
+│   └── Dashboard.tsx
+├── App.tsx
+└── main.tsx
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 画面遷移
+
+```text
+Login (/)
+   │
+   │ ログイン
+   ↓
+Dashboard (/dashboard)
+```
+
+## 重要なポイント
+
+### `useNavigate`
+
+`useNavigate`は、イベント処理などからプログラムによってページ遷移を行うためのHookです。
+
+```tsx
+const navigate = useNavigate();
+
+navigate("/dashboard");
+```
+
+今回のアプリでは、ログインボタンのクリックをきっかけにDashboardページへ遷移します。
+
+## インストール
+
+```bash
+npm install react-router
+```
+
+## 起動
+
+```bash
+npm run dev
+```
+
+## 使用技術
+
+* React
+* TypeScript
+* React Router
+* Vite
